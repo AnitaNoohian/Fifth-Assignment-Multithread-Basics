@@ -67,10 +67,34 @@ public class MatrixMultiplication {
             to the BlockMultiplier class to calculate that
         */
 
-//        List<Thread> threads = new ArrayList<>();
-//        List<BlockMultiplier> blocks = new ArrayList<>();
-//        List<List<List<Integer>>> finalBlocks = new ArrayList<>();
+        List<Thread> threads = new ArrayList<>();
+        List<BlockMultiplier> blocks = new ArrayList<>();
+        List<List<List<Integer>>> finalBlocks = new ArrayList<>();
 
+        List<List<Integer>> matrix_UA = new ArrayList<>(); //separated the uper part of matrixA
+        for (int i = 0; i < matrix_A.size()/2; i++) {
+            matrix_UA.add(matrix_A.get(i));
+        }
+        List<List<Integer>> matrix_LA = new ArrayList<>(); //separated the lower part of matrixA
+        for (int i = matrix_A.size()/2 ; i < matrix_A.size(); i++) {
+            matrix_LA.add(matrix_A.get(i));
+        }
+        List<List<Integer>> matrix_LB = new ArrayList<>(); //separated the left part of matrixB
+        for (int i = 0; i < matrix_B.size(); i++) {
+            List<Integer> row = new ArrayList<>();
+            for (int j = 0; j < matrix_B.getFirst().size()/2 ; j++) {
+                row.add(matrix_B.get(i).get(j));
+            }
+            matrix_LB.add(row);
+        }
+        List<List<Integer>> matrix_RB = new ArrayList<>(); //separated the right part of matrixB
+        for (int i = 0; i < matrix_B.size(); i++) {
+            List<Integer> row = new ArrayList<>();
+            for (int j = matrix_B.getFirst().size()/2 ; j < matrix_B.getFirst().size() ; j++) {
+                row.add(matrix_B.get(i).get(j));
+            }
+            matrix_RB.add(row);
+        }
 
         return null;
     }
