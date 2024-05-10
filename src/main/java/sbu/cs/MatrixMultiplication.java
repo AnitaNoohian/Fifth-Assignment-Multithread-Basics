@@ -69,7 +69,7 @@ public class MatrixMultiplication {
 
         List<Thread> threads = new ArrayList<>();
         List<BlockMultiplier> blocks = new ArrayList<>();
-       List<List<List<Integer>>> finalBlocks = new ArrayList<>();
+        List<List<List<Integer>>> finalBlocks = new ArrayList<>();
 
         List<List<Integer>> matrix_UA = new ArrayList<>(); //separated the uper part of matrixA
         for (int i = 0; i < matrix_A.size()/2; i++) {
@@ -95,6 +95,7 @@ public class MatrixMultiplication {
             }
             matrix_RB.add(row);
         }
+
         //make thread of the particular objects
         BlockMultiplier block0 = new BlockMultiplier(matrix_UA,matrix_LB);
         Thread thread0 = new Thread(block0);
@@ -148,7 +149,7 @@ public class MatrixMultiplication {
             finalMatrix.add(row);
         }
 
-        return null;
+        return finalMatrix;
     }
 
     public static void main(String[] args) {
