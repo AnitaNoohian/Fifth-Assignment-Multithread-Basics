@@ -30,6 +30,11 @@ public class TaskScheduler
             TODO
                 Simulate utilizing CPU by sleeping the thread for the specified processingTime
              */
+            try {
+                Thread.sleep(processingTime);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
