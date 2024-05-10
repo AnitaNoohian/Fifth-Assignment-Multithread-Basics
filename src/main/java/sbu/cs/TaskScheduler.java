@@ -53,6 +53,17 @@ public class TaskScheduler
             Don't forget to add each task's name to the finishedTasks after it's completely finished.
          */
 
+        //make a thread for each task and add the name of it to finishedTasks when it completed
+        for (Task task : tasks) {
+            try {
+                Thread thread = new Thread(task);
+                thread.start();
+                thread.join();  //join() method is for waiting for a task to completed and then go to another one
+                finishedTasks.add(task.taskName);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return finishedTasks;
     }
 
