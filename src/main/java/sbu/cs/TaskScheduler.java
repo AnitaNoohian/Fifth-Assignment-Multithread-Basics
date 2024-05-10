@@ -1,6 +1,7 @@
 package sbu.cs;
 
 import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 public class TaskScheduler
@@ -20,7 +21,9 @@ public class TaskScheduler
         /*
             ------------------------- You don't need to modify this part of the code -------------------------
          */
-
+        public int getProcessingTime(){
+            return processingTime;
+        }
         @Override
         public void run() {
             /*
@@ -33,6 +36,9 @@ public class TaskScheduler
     public static ArrayList<String> doTasks(ArrayList<Task> tasks)
     {
         ArrayList<String> finishedTasks = new ArrayList<>();
+
+        //sorting tasks base on processing time
+        Collections.sort(tasks,Comparator.comparing(Task::getProcessingTime).reversed());
 
         /*
         TODO
