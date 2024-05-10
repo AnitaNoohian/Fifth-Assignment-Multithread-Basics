@@ -69,7 +69,7 @@ public class MatrixMultiplication {
 
         List<Thread> threads = new ArrayList<>();
         List<BlockMultiplier> blocks = new ArrayList<>();
-        List<List<List<Integer>>> finalBlocks = new ArrayList<>();
+       List<List<List<Integer>>> finalBlocks = new ArrayList<>();
 
         List<List<Integer>> matrix_UA = new ArrayList<>(); //separated the uper part of matrixA
         for (int i = 0; i < matrix_A.size()/2; i++) {
@@ -95,7 +95,6 @@ public class MatrixMultiplication {
             }
             matrix_RB.add(row);
         }
-
         //make thread of the particular objects
         BlockMultiplier block0 = new BlockMultiplier(matrix_UA,matrix_LB);
         Thread thread0 = new Thread(block0);
@@ -114,6 +113,40 @@ public class MatrixMultiplication {
         threads.add(thread3);
         blocks.add(block3);
 
+        //start all threads
+        for (Thread thread : threads) {
+            thread.start();
+        }
+
+        for (int i = 0; i < 4; i++) {
+            try {
+                threads.get(i).join();
+                finalBlocks.add(blocks.get(i).getTempMatrixProduct());
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        List<List<Integer>> finalMatrix = new ArrayList<>();
+        //make the final matrix with final blocks
+        for (int i = 0; i < matrix_A.size() / 2; i++) {
+            List<Integer> row = new ArrayList<>();
+            for (int k = 0; k < 2; k++) {
+                for (int j = 0; j < matrix_B.getFirst().size() / 2; j++) {
+                    row.add(finalBlocks.get(k).get(i).get(j));
+                }
+            }
+            finalMatrix.add(row);
+        }
+        for (int i = 0; i < matrix_A.size() / 2; i++) {
+            List<Integer> row = new ArrayList<>();
+            for (int k = 2; k < 4; k++) {
+                for (int j = 0; j < matrix_B.getFirst().size() / 2; j++) {
+                    row.add(finalBlocks.get(k).get(i).get(j));
+                }
+            }
+            finalMatrix.add(row);
+        }
 
         return null;
     }
