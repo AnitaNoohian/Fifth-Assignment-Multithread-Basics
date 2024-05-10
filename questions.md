@@ -25,3 +25,8 @@ when the run() method of joinThread class runs, it prints " Running in: Thread_0
 after the thread ends it prints "Back to: main" beacuse after Thread_0 was done, the main thread continu the code and we get back to main thread so when we call this:
 Thread.currentThread().getName()  
 it prints "main".
+The output of the code is like this:
+
+    Running in: Thread_0
+    Back in: main
+    
