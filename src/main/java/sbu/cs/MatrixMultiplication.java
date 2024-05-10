@@ -96,6 +96,25 @@ public class MatrixMultiplication {
             matrix_RB.add(row);
         }
 
+        //make thread of the particular objects
+        BlockMultiplier block0 = new BlockMultiplier(matrix_UA,matrix_LB);
+        Thread thread0 = new Thread(block0);
+        threads.add(thread0);
+        blocks.add(block0);
+        BlockMultiplier block1 = new BlockMultiplier(matrix_UA,matrix_RB);
+        Thread thread1 = new Thread(block1);
+        threads.add(thread1);
+        blocks.add(block1);
+        BlockMultiplier block2 = new BlockMultiplier(matrix_LA,matrix_LB);
+        Thread thread2 = new Thread(block2);
+        threads.add(thread2);
+        blocks.add(block2);
+        BlockMultiplier block3 = new BlockMultiplier(matrix_LA,matrix_RB);
+        Thread thread3 = new Thread(block3);
+        threads.add(thread3);
+        blocks.add(block3);
+
+
         return null;
     }
 
